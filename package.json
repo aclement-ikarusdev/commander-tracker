@@ -17,6 +17,7 @@
     "@expo-google-fonts/space-grotesk": "^0.2.3",
     "@expo/vector-icons": "^14.0.0",
     "@react-navigation/native": "^6.0.2",
+    "clsx": "^2.1.0",
     "expo": "~50.0.13",
     "expo-app-loading": "^2.1.1",
     "expo-blur": "~12.9.2",

@@ -1,16 +1,10 @@
 import { router } from "expo-router";
-import {
-  Image,
-  ImageBackground,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, ImageBackground, TextInput, View } from "react-native";
 
 import { useSession } from "../../src/providers/SessionProvider";
 import { useMemo, useState } from "react";
 import CodeInput from "@/components/CodeInput";
+import { Button } from "@/components/Button";
 
 export default function SignIn() {
   const { signIn } = useSession();
@@ -46,8 +40,7 @@ export default function SignIn() {
             placeholderTextColor={"#9EA6B8"}
             style={{ padding: 10 }}
           />
-          <TouchableOpacity
-            className="bg-[#1A5CE5] rounded-xl p-4 h-16 w-full mb-4"
+          <Button
             disabled={!isEmailValid}
             onPress={() => {
               if (!isEmailValid) {
@@ -56,26 +49,24 @@ export default function SignIn() {
 
               setStep("code");
             }}
-          >
-            <Text className="text-white text-lg text-center">Login</Text>
-          </TouchableOpacity>
+            text="Login"
+          />
         </View>
       )}
       {step === "code" && (
         <View className="flex-[0.4] flex-col justify-end items-end m-4">
           <CodeInput />
           <View className="flex flex-row gap-2">
-            <TouchableOpacity
-              className="bg-[#3D404A] rounded-xl p-4 h-16 mb-4 flex-1"
+            <Button
               disabled={!isEmailValid}
               onPress={() => {
                 setStep("email");
               }}
-            >
-              <Text className="text-white text-lg text-center">Cancel</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              className="bg-[#1A5CE5] rounded-xl p-4 h-16 mb-4 flex-1"
+              text="Cancel"
+              primary={false}
+              className="flex-1"
+            />
+            <Button
               disabled={!isEmailValid}
               onPress={() => {
                 if (!isEmailValid || !email) {
@@ -87,9 +78,9 @@ export default function SignIn() {
                 // successful before navigating.
                 router.replace("/");
               }}
-            >
-              <Text className="text-white text-lg text-center">Login</Text>
-            </TouchableOpacity>
+              text="Login"
+              className="flex-1"
+            />
           </View>
         </View>
       )}

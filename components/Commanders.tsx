@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, Image } from "react-native";
 
 import { Text, View } from "./Themed";
+import { CommanderCard } from "./CommanderCard";
 
 export default function Commanders() {
   const [commanders, setCommanders] = React.useState([
@@ -28,19 +29,7 @@ export default function Commanders() {
       <FlatList
         data={commanders}
         horizontal={true}
-        renderItem={({ item }) => (
-          <View className="flex">
-            <Image
-              source={{ uri: item.image }}
-              width={160}
-              height={215}
-              className="rounded-xl"
-            />
-            <Text className="text-lg pl-2 pt-6 font-sg-reg" style={{}}>
-              {item.name}
-            </Text>
-          </View>
-        )}
+        renderItem={({ item }) => <CommanderCard {...item} />}
         ItemSeparatorComponent={() => <View style={{ width: 20 }} />}
       />
     </View>
